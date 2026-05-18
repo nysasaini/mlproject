@@ -1,0 +1,905 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    line-height: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* IMPORTANT: enable scroll */
+}
+
+/* ===== LANDING ===== */
+#landing {
+    height: 100vh;
+    position: relative;
+}
+
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6);
+}
+
+.landing-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* 🔥 ensures button is perfectly aligned */
+
+    text-align: center;
+    color: white;
+}
+
+.landing-text h1 {
+    font-size: 8rem;   /* bigger */
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* ===== DASHBOARD ===== */
+#dashboard {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+}
+
+.main-panel {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    background: transparent;   /* 🔥 IMPORTANT */
+    z-index: 1;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 25px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 15px;
+}
+
+.search-box {
+    width: 700px;   /* 🔥 control length here */
+    margin: 20px auto 10px auto;  /* 🔥 centers it perfectly */
+}
+
+.search-box input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+/* Landing full screen */
+#landing {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ===== WEATHER VIDEO BACKGROUND ===== */
+#weather-video {
+    position: fixed;   /* 🔥 IMPORTANT */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    object-fit: cover;
+    z-index: -2;   /* behind everything */
+    filter: brightness(0.5);
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.25); /* subtle dark layer */
+    z-index: -1;
+}
+
+/* ===== GLOBAL FOOTER ===== */
+#global-footer {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 20;
+}
+
+/* Text */
+.footer-text {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+/* Icons container */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Icons */
+.social-icons a {
+    color: white;
+    font-size: 20px;
+    transition: 0.3s ease;
+}
+
+/* Hover effect (premium feel) */
+.social-icons a:hover {
+    color: #00c3ff;
+    transform: scale(1.2);
+}
+
+/* ===== LOGO ANIMATION ===== */
+
+.logo-wrapper {
+    position: relative;
+}
+
+#main-logo {
+    font-size: 8rem;
+    color: white;
+
+    filter: blur(10px);
+    opacity: 0;
+
+    animation: revealLogo 2s ease forwards;
+}
+
+@keyframes revealLogo {
+    to {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.bottom-text {
+    margin-top: 10px;
+    margin-bottom: 30px;   /* 🔥 adds space before button */
+}
+
+/* ===== GO TO DASHBOARD BUTTON ===== */
+
+#go-dashboard {
+    padding: 16px 42px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: white;
+    cursor: pointer;
+
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+#go-dashboard:hover {
+    color: #00ff88;                 /* green text */
+    border-color: #00ff88;
+
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 255, 136, 0.25);
+}
+
+/* ===== LOGO ZOOM OUT ANIMATION ===== */
+
+#main-logo.zoom-out {
+    animation: zoomOutLogo 0.9s ease forwards;
+}
+
+@keyframes zoomOutLogo {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    50% {
+        filter: blur(6px);   /* 🔥 motion blur */
+    }
+    100% {
+        transform: scale(6);
+        opacity: 0;
+        filter: blur(10px);
+    }
+}
+
+/* ===== FADE TO BLACK ===== */
+#fade-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: black;
+    opacity: 0;
+
+    pointer-events: none;
+    z-index: 50;
+
+    transition: opacity 0.8s ease;
+}
+
+#fade-overlay.active {
+    opacity: 1;
+}
+
+.top-bar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;   /* 🔥 LEFT + RIGHT */
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.2);
+    z-index: 20;
+}
+
+.top-title {
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.center-content {
+    position: relative;
+
+    margin-top: 120px;  /* space below top bar */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    z-index: 10;  /* above video */
+}
+
+/* ===== DYNAMIC TITLE ===== */
+#dynamic-title {
+    font-size: 70px;
+    font-weight: 700;
+    color: white;
+
+    margin-bottom: 25px;
+
+    opacity: 0;
+    filter: blur(10px);
+
+    animation: revealDashboardLogo 1.2s ease forwards;
+}
+
+/* Animation */
+@keyframes revealDashboardLogo {
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* Blur animation */
+#dynamic-title.blur {
+    filter: blur(10px);
+    opacity: 0.5;
+}
+
+/* ===== SUBTITLE ===== */
+.subtitle {
+    color: white;
+    font-size: 24px;   /* 🔥 bigger */
+    font-weight: 600;  /* 🔥 bold */
+    opacity: 0.9;
+
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+#temperature-text {
+    color: white;
+    font-size: 18px;
+    margin-top: -10px;
+    margin-bottom: 20px;
+
+    text-align: center;
+    opacity: 0;
+
+    animation: fadeTemp 1s ease forwards;
+}
+
+/* Animation */
+@keyframes fadeTemp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.weather-icon {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+/* ===== PREMIUM CARD DESIGN ===== */
+.card {
+    padding: 25px 25px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(0,255,150,0.1);
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    color: white;
+
+    transition: all 0.3s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle glow */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(0,255,150,0.4);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* Headings */
+.card h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.8;
+    text-align: center;
+    width: 100%; 
+}
+
+.card h3::after {
+    content: "";
+    display: block;
+    width: 40%;
+    height: 2px;
+    margin: 8px auto 0;
+
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+}
+
+.left-card p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.right-card p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* ===== DATA ROW STYLE ===== */
+.card p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 14px;
+    margin-bottom: 12px;
+
+    padding: 8px 10px;
+    border-radius: 8px;
+
+    background: rgba(255,255,255,0.05);
+}
+
+/* Label vs value */
+.card p span {
+    font-weight: 600;
+}
+
+.row-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+
+    stroke: #00ff99;
+    stroke-width: 2;
+
+    filter: drop-shadow(0 0 8px rgba(0,255,150,0.6));
+}
+
+body.clear {
+    background: linear-gradient(-45deg, #56ccf2, #2f80ed);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+}
+
+body.rain {
+    background: linear-gradient(-45deg, #373b44, #4286f4);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.weather-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 20px;
+    width: 90%;
+    margin-top: 40px;
+}
+
+/* LEFT CARD */
+.left-card {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+/* CENTER (HOURLY) */
+.center-card {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+/* RIGHT CARD */
+.right-card {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+/* 🔥 MAP CARD (THIS IS THE FIX) */
+.map-card {
+    grid-column: 2;   /* center column */
+    grid-row: 2;      /* below hourly */
+
+    width: 100%;
+}
+
+
+/* ===== HORIZONTAL TIMELINE ===== */
+
+.timeline-horizontal {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+}
+
+/* line */
+.timeline-horizontal::before {
+    content: "";
+    position: absolute;
+
+    top: 50%;
+    left: 0;
+    right: 0;
+
+    height: 2px;
+    background: rgba(255,255,255,0.2);
+
+    transform: translateY(-50%);
+}
+
+/* each step */
+.timeline-step {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex: 1;
+}
+
+/* time */
+.timeline-step .time {
+    font-size: 12px;
+    margin-bottom: 8px;
+    opacity: 0.7;
+}
+
+/* dot */
+.timeline-step .dot {
+    width: 12px;
+    height: 12px;
+    background: #00ff99;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 12px rgba(0,255,150,0.9);
+    animation: pulseDot 2s infinite;   /* 🔥 ADD THIS LINE */
+}
+
+@keyframes pulseDot {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* temp */
+.timeline-step .temp {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.weather-condition {
+    margin-left: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+    text-transform: capitalize;
+}
+
+.sub-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mini-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 10px 12px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: white;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s ease;
+}
+
+.mini-card:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateX(3px);
+}
+
+.mini-card span {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+.mini-card p {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Weather description (middle text) */
+.weather-desc {
+    color: white;
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-top: -20px;   /* 🔥 pulls it closer to city */
+    margin-bottom: 5px; /* 🔥 pulls temp closer */
+
+    opacity: 0.8;
+}
+
+/* Reduce spacing between all 3 */
+#dynamic-title {
+    margin-bottom: 5px;   /* 🔥 tighter */
+}
+
+#temperature-text {
+    margin-top: 0;        /* 🔥 remove gap */
+}
+
+/* Maps */
+
+.map-inside {
+    margin-top: 20px;
+
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 15px;
+}
+
+.map-inside h4 {
+    text-align: center;
+    margin-bottom: 10px;
+
+    font-size: 14px;
+    color: white;
+    opacity: 0.7;
+}
+
+.map-inside iframe {
+    width: 100%;
+    height: 160px;
+
+    border: none;
+    border-radius: 10px;
+
+    filter: brightness(0.85);
+}
+
+.top-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.top-icons a {
+    color: white;
+    font-size: 20px;
+
+    transition: 0.3s ease;
+}
+
+.top-icons a:hover {
+    color: #00c3ff;
+    transform: scale(1.2);
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+/* MAIN TEMP BLOCK */
+.temp-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* 🔥 center horizontally */
+    justify-content: center;
+
+    margin-bottom: 15px;
+}
+
+/* BIG TEMP */
+.temp-big {
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+    line-height: 1;   /* 🔥 tight spacing */
+}
+
+/* FEELS LIKE */
+.temp-feels {
+    margin: 6px 0 2px 0;   /* 🔥 tighter vertical spacing */
+    font-size: 12px;       /* slightly smaller = cleaner */
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 4px;   /* 🔥 very tight gap */
+    text-align: center;
+}
+
+/* ONLY VALUE BOLD */
+.temp-feels span {
+    font-weight: 600;
+    color: white;
+}
+
+/* WIND BLOCK */
+.wind-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 10px;
+}
+
+.wind-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+}
+
+.wind-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+/* WIND DIRECTION */
+.wind-direction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:1px;
+}
+
+/* PNG ICON */
+.wind-direction img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* TEXT BELOW ICON */
+.direction-text {
+    margin-top: 1px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+}
+
+.precipitation-block {
+    display: flex;
+    align-items: center;   /* 🔥 vertical center */
+    justify-content: center; /* 🔥 horizontal center */
+     gap: 6px;          /* 🔥 reduced from 8–10px */
+    padding: 10px 0;   /* space between icon & % */
+}
+
+/* ICON */
+.precipitation-block img {
+    width: 50px;
+    height: 50px;
+}
+
+/* VALUE */
+.precip-value {
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+}
+
+/* Divider between detail rows */
+.sub-cards .precipitation-block {
+    padding: 1px 0;
+}
+
+/* 🔥 LINE BETWEEN ITEMS */
+.sub-cards .precipitation-block:not(:last-child) {
+    border-bottom: 1px solid transparent;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+    ) bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+}
+
+.location-icon {
+    margin-right: 8px;
+    font-size: 0.8em;   /* slightly smaller than text */
+    vertical-align: middle;
+    color: #00c3ff;   /* 🔥 nice highlight color */
+}
+
+.location-icon i {
+    text-shadow: 0 0 8px rgba(0,195,255,0.6);
+}
+
+#dynamic-title:hover .location-icon {
+    transform: scale(1.2);
+}
+
+.country-flag:hover {
+    transform: scale(1.1);
+}
+
+/* HEADER WRAPPER */
+.location-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+}
+
+/* ICON */
+.location-icon {
+    font-size: 20px;
+    color: #00c3ff;
+}
+
+/* FLAG */
+.country-flag {
+    width: 26px;
+    height: 18px;
+    border-radius: 3px;
+}
+
+/* DESCRIPTION */
+.weather-desc {
+    text-align: center;
+    margin-top: 4px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+}
+
+/* COORDINATES */
+.coordinates {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin: 2px 0;
+    letter-spacing: 0.5px;
+}
+
+/* Make labels slightly different */
+.coordinates strong {
+    color: rgba(255,255,255,0.8);
+}
