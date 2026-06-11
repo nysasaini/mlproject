@@ -96,7 +96,16 @@ def weather_view(request):
         # Update path to your CSV file location
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-        csv_path = os.path.join(BASE_DIR, 'weather.csv')  # Change this path
+        BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__))
+    )
+)
+
+        csv_path = os.path.join(BASE_DIR, 'weather.csv')
+
+        print("CSV PATH =", csv_path)
+        print("FILE EXISTS =", os.path.exists(csv_path)) # Change this path
         historical_data = read_historical_data(csv_path)
 
         X, y, le = prepare_data(historical_data)
